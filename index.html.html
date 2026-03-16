@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Meesho - India's Best Online Shopping App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    :root {
+      --primary: #9b2c8e;
+      --primary-light: #c054b0;
+      --primary-dark: #6d1a64;
+      --accent: #f26522;
+      --accent2: #ffd600;
+      --bg: #f6f6f6;
+      --white: #ffffff;
+      --text: #1a1a1a;
+      --muted: #888;
+      --border: #e8e8e8;
+      --card-shadow: 0 2px 16px rgba(155,44,142,0.08);
+      --radius: 14px;
+      --radius-sm: 8px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Nunito', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+
+    /* ===== HEADER ===== */
+    header {
+      background: var(--primary);
+      position: sticky; top: 0; z-index: 100;
+      box-shadow: 0 2px 12px rgba(155,44,142,0.25);
+    }
+    .header-top {
+      display: flex; align-items: center; gap: 16px;
+      max-width: 1280px; margin: 0 auto;
+      padding: 12px 20px;
+    }
+    .logo {
+      font-family: 'Poppins', sans-serif;
+      font-size: 28px; font-weight: 800;
+      color: var(--white); text-decoration: none;
+      letter-spacing: -0.5px; flex-shrink: 0;
+    }
+    .logo span { color: var(--accent2); }
+    .search-bar {
+      flex: 1; display: flex; align-items: center;
+      background: var(--white); border-radius: 10px;
+      overflow: hidden; max-width: 620px;
+    }
+    .search-bar input {
+      flex: 1; border: none; outline: none;
+      padding: 11px 16px; font-size: 15px;
+      font-family: 'Nunito', sans-serif;
+    }
+    .search-btn {
+      background: var(--accent); border: none;
+      padding: 11px 18px; cursor: pointer;
+      color: white; font-size: 17px;
+      transition: background 0.2s;
+    }
+    .search-btn:hover { background: #d9561e; }
+    .header-actions {
+      display: flex; align-items: center; gap: 6px; margin-left: auto;
+    }
+    .hdr-btn {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 3px; background: none; border: none;
+      color: white; cursor: pointer; padding: 6px 12px;
+      border-radius: 8px; transition: background 0.2s;
+      font-family: 'Nunito', sans-serif; font-size: 12px; font-weight: 600;
+      text-decoration: none;
+    }
+    .hdr-btn:hover { background: rgba(255,255,255,0.15); }
+    .hdr-btn i { font-size: 20px; }
+    .cart-badge { position: relative; }
+    .badge {
+      position: absolute; top: -4px; right: -8px;
+      background: var(--accent2); color: var(--primary-dark);
+      border-radius: 50%; width: 17px; height: 17px;
+      font-size: 10px; font-weight: 800;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* ===== NAV ===== */
+    nav {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner {
+      max-width: 1280px; margin: 0 auto;
+      display: flex; align-items: center; gap: 4px;
+      padding: 0 20px; overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .nav-inner::-webkit-scrollbar { display: none; }
+    .nav-link {
+      white-space: nowrap; text-decoration: none;
+      color: var(--text); font-weight: 700; font-size: 14px;
+      padding: 14px 16px; border-bottom: 3px solid transparent;
+      transition: all 0.2s; flex-shrink: 0;
+    }
+    .nav-link:hover, .nav-link.active {
+      color: var(--primary); border-bottom-color: var(--primary);
+    }
+
+    /* ===== MAIN ===== */
+    main { max-width: 1280px; margin: 0 auto; padding: 20px 20px 40px; }
+
+    /* ===== HERO BANNER ===== */
+    .hero {
+      border-radius: var(--radius);
+      overflow: hidden; margin-bottom: 24px;
+      position: relative; height: 220px;
+      background: linear-gradient(120deg, #9b2c8e 0%, #c054b0 40%, #f26522 100%);
+      display: flex; align-items: center;
+    }
+    .hero-content {
+      padding: 36px 48px; z-index: 2; position: relative;
+    }
+    .hero-tag {
+      display: inline-block;
+      background: var(--accent2); color: var(--primary-dark);
+      border-radius: 20px; padding: 3px 14px;
+      font-size: 12px; font-weight: 800;
+      letter-spacing: 0.5px; margin-bottom: 10px;
+    }
+    .hero h1 {
+      font-size: 36px; font-weight: 900;
+      color: white; line-height: 1.1; margin-bottom: 10px;
+    }
+    .hero p {
+      color: rgba(255,255,255,0.88); font-size: 15px; margin-bottom: 18px;
+    }
+    .hero-btn {
+      background: white; color: var(--primary);
+      border: none; border-radius: 8px;
+      padding: 11px 28px; font-size: 15px;
+      font-weight: 800; cursor: pointer;
+      font-family: 'Nunito', sans-serif;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 18px rgba(0,0,0,0.12);
+    }
+    .hero-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.18); }
+    .hero-circles {
+      position: absolute; right: -30px; top: -40px;
+      width: 340px; height: 340px; opacity: 0.13;
+      background: radial-gradient(circle, white 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-emoji {
+      position: absolute; right: 80px; bottom: 10px;
+      font-size: 110px; opacity: 0.22; pointer-events: none;
+      transform: rotate(-12deg);
+    }
+
+    /* ===== OFFER STRIP ===== */
+    .offer-strip {
+      display: flex; gap: 14px; margin-bottom: 28px;
+      overflow-x: auto; scrollbar-width: none; padding-bottom: 4px;
+    }
+    .offer-strip::-webkit-scrollbar { display: none; }
+    .offer-card {
+      flex-shrink: 0; background: var(--white);
+      border-radius: 12px; padding: 16px 22px;
+      display: flex; align-items: center; gap: 14px;
+      box-shadow: var(--card-shadow); min-width: 200px;
+      border: 1.5px solid var(--border);
+      transition: transform 0.2s;
+    }
+    .offer-card:hover { transform: translateY(-2px); }
+    .offer-icon {
+      width: 46px; height: 46px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px; flex-shrink: 0;
+    }
+    .offer-card:nth-child(1) .offer-icon { background: #fff3e0; }
+    .offer-card:nth-child(2) .offer-icon { background: #fce4ec; }
+    .offer-card:nth-child(3) .offer-icon { background: #e8f5e9; }
+    .offer-card:nth-child(4) .offer-icon { background: #e3f2fd; }
+    .offer-card h4 { font-size: 14px; font-weight: 800; color: var(--text); }
+    .offer-card p { font-size: 12px; color: var(--muted); }
+
+    /* ===== SECTION TITLES ===== */
+    .section-header {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-size: 22px; font-weight: 900; color: var(--text);
+    }
+    .section-title span { color: var(--primary); }
+    .see-all {
+      color: var(--primary); font-weight: 700; font-size: 14px;
+      text-decoration: none; display: flex; align-items: center; gap: 4px;
+    }
+    .see-all:hover { text-decoration: underline; }
+
+    /* ===== CATEGORY ICONS ===== */
+    .categories {
+      display: flex; gap: 14px; overflow-x: auto;
+      scrollbar-width: none; padding-bottom: 6px; margin-bottom: 30px;
+    }
+    .categories::-webkit-scrollbar { display: none; }
+    .cat-item {
+      flex-shrink: 0; display: flex; flex-direction: column;
+      align-items: center; gap: 8px; cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .cat-item:hover { transform: translateY(-3px); }
+    .cat-circle {
+      width: 70px; height: 70px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 28px; border: 2.5px solid var(--border);
+      background: white; transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .cat-item:hover .cat-circle {
+      border-color: var(--primary);
+      box-shadow: 0 4px 16px rgba(155,44,142,0.18);
+    }
+    .cat-item span { font-size: 12px; font-weight: 700; color: var(--text); text-align: center; max-width: 72px; }
+
+    /* ===== PRODUCT GRID ===== */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px; margin-bottom: 36px;
+    }
+    .product-card {
+      background: var(--white); border-radius: var(--radius);
+      overflow: hidden; box-shadow: var(--card-shadow);
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative; cursor: pointer;
+    }
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(155,44,142,0.16);
+    }
+    .product-img {
+      width: 100%; aspect-ratio: 1/1.1;
+      object-fit: cover; display: block;
+      background: #f0e8f5;
+    }
+    .product-img-placeholder {
+      width: 100%; aspect-ratio: 1/1.1;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 64px;
+    }
+    .wishlist-btn {
+      position: absolute; top: 10px; right: 10px;
+      background: white; border: none; border-radius: 50%;
+      width: 34px; height: 34px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+      color: #ccc; font-size: 16px;
+      transition: color 0.2s, transform 0.2s;
+    }
+    .wishlist-btn:hover { color: #e53935; transform: scale(1.12); }
+    .wishlist-btn.active { color: #e53935; }
+    .discount-badge {
+      position: absolute; top: 10px; left: 10px;
+      background: var(--accent); color: white;
+      border-radius: 6px; padding: 2px 8px;
+      font-size: 11px; font-weight: 800;
+    }
+    .product-info { padding: 12px 14px 14px; }
+    .product-name {
+      font-size: 14px; font-weight: 700;
+      color: var(--text); margin-bottom: 6px;
+      display: -webkit-box; -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical; overflow: hidden;
+    }
+    .product-price-row {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    }
+    .price-current {
+      font-size: 17px; font-weight: 900; color: var(--text);
+    }
+    .price-original {
+      font-size: 13px; color: var(--muted);
+      text-decoration: line-through;
+    }
+    .price-off {
+      font-size: 12px; color: #43a047; font-weight: 700;
+    }
+    .stars {
+      display: flex; align-items: center; gap: 4px;
+      font-size: 12px; color: var(--muted); margin-top: 5px;
+    }
+    .stars i { color: #ffc107; font-size: 11px; }
+    .free-delivery {
+      font-size: 11px; color: #43a047; font-weight: 700;
+      margin-top: 4px;
+    }
+    .add-cart-btn {
+      width: 100%; margin-top: 10px; padding: 9px;
+      background: var(--primary); color: white; border: none;
+      border-radius: var(--radius-sm); font-size: 13px; font-weight: 800;
+      cursor: pointer; font-family: 'Nunito', sans-serif;
+      transition: background 0.2s;
+    }
+    .add-cart-btn:hover { background: var(--primary-dark); }
+
+    /* ===== BANNER ROW ===== */
+    .banner-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 16px; margin-bottom: 32px;
+    }
+    .mini-banner {
+      border-radius: var(--radius); padding: 24px 28px;
+      display: flex; flex-direction: column; justify-content: center;
+      min-height: 130px; position: relative; overflow: hidden;
+      cursor: pointer; transition: transform 0.2s;
+    }
+    .mini-banner:hover { transform: scale(1.02); }
+    .mini-banner:nth-child(1) { background: linear-gradient(135deg, #f8f0ff, #e8c6f8); }
+    .mini-banner:nth-child(2) { background: linear-gradient(135deg, #fff8e1, #ffe082); }
+    .mini-banner h3 { font-size: 20px; font-weight: 900; color: var(--text); }
+    .mini-banner p { font-size: 13px; color: var(--muted); margin-top: 4px; margin-bottom: 12px; }
+    .mini-btn {
+      display: inline-block; padding: 8px 18px;
+      background: var(--primary); color: white;
+      border-radius: 7px; font-size: 13px; font-weight: 700;
+      border: none; cursor: pointer; font-family: 'Nunito', sans-serif;
+    }
+    .mini-banner:nth-child(2) .mini-btn { background: var(--accent); }
+    .mini-banner-emoji {
+      position: absolute; right: 20px; bottom: 0;
+      font-size: 72px; opacity: 0.18;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: var(--white);
+      border-top: 1px solid var(--border);
+      margin-top: 40px;
+    }
+    .footer-inner {
+      max-width: 1280px; margin: 0 auto;
+      padding: 40px 20px 20px;
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 32px;
+    }
+    .footer-col h4 {
+      font-size: 15px; font-weight: 800; color: var(--text);
+      margin-bottom: 16px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul li a {
+      text-decoration: none; color: var(--muted);
+      font-size: 14px; font-weight: 600;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: var(--primary); }
+    .footer-brand { max-width: 220px; }
+    .footer-brand .logo { font-size: 26px; display: inline-block; margin-bottom: 10px; }
+    .footer-brand p { font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .social-links { display: flex; gap: 10px; margin-top: 16px; }
+    .social-links a {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: var(--bg); display: flex; align-items: center; justify-content: center;
+      color: var(--primary); font-size: 16px; text-decoration: none;
+      transition: background 0.2s, color 0.2s;
+    }
+    .social-links a:hover { background: var(--primary); color: white; }
+    .footer-bottom {
+      border-top: 1px solid var(--border); text-align: center;
+      padding: 16px 20px; font-size: 13px; color: var(--muted); font-weight: 600;
+    }
+
+    /* ===== CART TOAST ===== */
+    .toast {
+      position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(80px);
+      background: var(--primary-dark); color: white;
+      padding: 12px 28px; border-radius: 40px;
+      font-weight: 700; font-size: 15px;
+      box-shadow: 0 6px 24px rgba(0,0,0,0.2);
+      z-index: 9999; transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      pointer-events: none;
+    }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 700px) {
+      .header-top { flex-wrap: wrap; gap: 10px; }
+      .logo { font-size: 22px; }
+      .search-bar { order: 3; width: 100%; max-width: 100%; }
+      .header-actions { gap: 2px; }
+      .hdr-btn { padding: 5px 8px; font-size: 11px; }
+      .hdr-btn i { font-size: 17px; }
+      .hero { height: 180px; }
+      .hero-content { padding: 20px 22px; }
+      .hero h1 { font-size: 24px; }
+      .hero-emoji { display: none; }
+      .banner-row { grid-template-columns: 1fr; }
+      .product-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      main { padding: 14px 12px 40px; }
+    }
+    @media (max-width: 420px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .product-info { padding: 8px 10px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-top">
+    <a href="#" class="logo">mee<span>sho</span></a>
+    <div class="search-bar">
+      <input type="text" placeholder="Try Sarees, Kurti, Tops..." id="searchInput"/>
+      <button class="search-btn" onclick="handleSearch()"><i class="fas fa-search"></i></button>
+    </div>
+    <div class="header-actions">
+      <a href="#" class="hdr-btn"><i class="fas fa-user"></i>Profile</a>
+      <a href="#" class="hdr-btn"><i class="fas fa-heart"></i>Wishlist</a>
+      <a href="#" class="hdr-btn cart-badge" onclick="showCart(event)">
+        <span class="badge" id="cartCount">0</span>
+        <i class="fas fa-shopping-bag"></i>Cart
+      </a>
+    </div>
+  </div>
+</header>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="#" class="nav-link active">Women</a>
+    <a href="#" class="nav-link">Men</a>
+    <a href="#" class="nav-link">Kids</a>
+    <a href="#" class="nav-link">Home & Kitchen</a>
+    <a href="#" class="nav-link">Beauty</a>
+    <a href="#" class="nav-link">Electronics</a>
+    <a href="#" class="nav-link">Bags & Footwear</a>
+    <a href="#" class="nav-link">Jewellery</a>
+    <a href="#" class="nav-link">Sports</a>
+    <a href="#" class="nav-link">Stationery</a>
+  </div>
+</nav>
+
+<!-- MAIN -->
+<main>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-circles"></div>
+    <div class="hero-content">
+      <span class="hero-tag">🔥 SALE LIVE</span>
+      <h1>Minimum 50% Off<br>On Everything!</h1>
+      <p>Free Delivery on all orders. Shop from 10 Cr+ products.</p>
+      <button class="hero-btn" onclick="showToast('🛍️ Happy Shopping!')">Shop Now</button>
+    </div>
+    <div class="hero-emoji">👗</div>
+  </div>
+
+  <!-- OFFER STRIP -->
+  <div class="offer-strip">
+    <div class="offer-card">
+      <div class="offer-icon">🚚</div>
+      <div><h4>Free Delivery</h4><p>On all orders above ₹0</p></div>
+    </div>
+    <div class="offer-card">
+      <div class="offer-icon">↩️</div>
+      <div><h4>Easy Returns</h4><p>7-day hassle-free returns</p></div>
+    </div>
+    <div class="offer-card">
+      <div class="offer-icon">💳</div>
+      <div><h4>Secure Payments</h4><p>UPI, Cards & more</p></div>
+    </div>
+    <div class="offer-card">
+      <div class="offer-icon">🎁</div>
+      <div><h4>Daily Deals</h4><p>New offers every day</p></div>
+    </div>
+    <div class="offer-card">
+      <div class="offer-icon">⭐</div>
+      <div><h4>1 Cr+ Sellers</h4><p>Verified & trusted</p></div>
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <div class="section-header">
+    <h2 class="section-title">Shop by <span>Category</span></h2>
+    <a href="#" class="see-all">See All <i class="fas fa-chevron-right"></i></a>
+  </div>
+  <div class="categories">
+    <div class="cat-item" onclick="filterCategory('saree')">
+      <div class="cat-circle">🥻</div><span>Sarees</span>
+    </div>
+    <div class="cat-item" onclick="filterCategory('kurti')">
+      <div class="cat-circle">👘</div><span>Kurtis</span>
+    </div>
+    <div class="cat-item" onclick="filterCategory('tshirt')">
+      <div class="cat-circle">👕</div><span>T-Shirts</span>
+    </div>
+    <div class="cat-item" onclick="filterCategory('jeans')">
+      <div class="cat-circle">👖</div><span>Jeans</span>
+    </div>
+    <div class="cat-item" onclick="filterCategory('footwear')">
+      <div class="cat-circle">👟</div><span>Footwear</span>
+    </div>
+    <div class="cat-item" onclick="filterCategory('bag')">
+      <div class="cat-circle">👜</div><span>Bags</span>
+    </div>
+    <div class="cat-item" onclick="filterCategory('jewellery')">
+      <div class="cat-circle">💍</div><span>Jewellery</span>
+    </div>
+    <div class="cat-item" onclick="filterCategory('home')">
+      <div class="cat-circle">🏠</div><span>Home Decor</span>
+    </div>
+    <div class="cat-item" onclick="filterCategory('beauty')">
+      <div class="cat-circle">💄</div><span>Beauty</span>
+    </div>
+    <div class="cat-item" onclick="filterCategory('mobile')">
+      <div class="cat-circle">📱</div><span>Mobile</span>
+    </div>
+    <div class="cat-item" onclick="filterCategory('kids')">
+      <div class="cat-circle">🧸</div><span>Kids Wear</span>
+    </div>
+    <div class="cat-item" onclick="filterCategory('sport')">
+      <div class="cat-circle">🏋️</div><span>Sports</span>
+    </div>
+  </div>
+
+  <!-- MINI BANNERS -->
+  <div class="banner-row">
+    <div class="mini-banner">
+      <h3>Festival Special ✨</h3>
+      <p>Traditional wear starting ₹199</p>
+      <button class="mini-btn">Explore Now</button>
+      <span class="mini-banner-emoji">🎉</span>
+    </div>
+    <div class="mini-banner">
+      <h3>New Arrivals 🌟</h3>
+      <p>Trending fashion this season</p>
+      <button class="mini-btn">Shop New</button>
+      <span class="mini-banner-emoji">👒</span>
+    </div>
+  </div>
+
+  <!-- PRODUCT GRID -->
+  <div class="section-header">
+    <h2 class="section-title">Trending <span>Products</span></h2>
+    <a href="#" class="see-all">See All <i class="fas fa-chevron-right"></i></a>
+  </div>
+  <div class="product-grid" id="productGrid"></div>
+
+  <!-- MORE PRODUCTS SECTION -->
+  <div class="section-header" style="margin-top:10px;">
+    <h2 class="section-title">Under <span>₹299</span></h2>
+    <a href="#" class="see-all">See All <i class="fas fa-chevron-right"></i></a>
+  </div>
+  <div class="product-grid" id="productGrid2"></div>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-col footer-brand">
+      <a href="#" class="logo">mee<span style="color:var(--accent2)">sho</span></a>
+      <p>India's largest reselling & social commerce platform. Shop directly from manufacturers.</p>
+      <div class="social-links">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Customer Support</h4>
+      <ul>
+        <li><a href="#">Help Center</a></li>
+        <li><a href="#">My Orders</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Return & Refund</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+        <li><a href="#">Blog</a></li>
+        <li><a href="#">Affiliate</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Policies</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Cookie Policy</a></li>
+        <li><a href="#">Sitemap</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2024 Meesho Clone. Made with ❤️ in India. All prices are inclusive of GST.
+  </div>
+</footer>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+  // Product Data
+  const products = [
+    { id:1, name:"Floral Print Anarkali Kurta Set", price:399, mrp:999, off:60, rating:4.3, reviews:1284, emoji:"👘", category:"kurti", delivery:"Free Delivery" },
+    { id:2, name:"Men's Slim Fit Stretch Jeans", price:549, mrp:1299, off:57, rating:4.1, reviews:856, emoji:"👖", category:"jeans", delivery:"Free Delivery" },
+    { id:3, name:"Ethnic Silk Saree with Blouse", price:799, mrp:2499, off:68, rating:4.5, reviews:2100, emoji:"🥻", category:"saree", delivery:"Free Delivery" },
+    { id:4, name:"Women's Casual Round Neck Top", price:249, mrp:599, off:58, rating:4.0, reviews:649, emoji:"👚", category:"tshirt", delivery:"Free Delivery" },
+    { id:5, name:"Stylish Shoulder Handbag", price:499, mrp:1199, off:58, rating:4.2, reviews:431, emoji:"👜", category:"bag", delivery:"Free Delivery" },
+    { id:6, name:"Block Heel Sandals Women", price:349, mrp:899, off:61, rating:3.9, reviews:312, emoji:"👡", category:"footwear", delivery:"Free Delivery" },
+    { id:7, name:"Gold-Plated Kundan Necklace Set", price:299, mrp:799, off:62, rating:4.4, reviews:788, emoji:"📿", category:"jewellery", delivery:"Free Delivery" },
+    { id:8, name:"Men's Printed Graphic T-Shirt", price:199, mrp:499, off:60, rating:4.1, reviews:1120, emoji:"👕", category:"tshirt", delivery:"Free Delivery" },
+    { id:9, name:"Decorative Wall Clock Wooden", price:649, mrp:1499, off:56, rating:4.3, reviews:275, emoji:"🕰️", category:"home", delivery:"Free Delivery" },
+    { id:10, name:"Baby Girl Frock Party Wear", price:299, mrp:699, off:57, rating:4.5, reviews:934, emoji:"👗", category:"kids", delivery:"Free Delivery" },
+    { id:11, name:"Rose Gold Stud Earrings", price:149, mrp:399, off:62, rating:4.2, reviews:503, emoji:"💎", category:"jewellery", delivery:"Free Delivery" },
+    { id:12, name:"Men's Running Sports Shoes", price:699, mrp:1799, off:61, rating:4.0, reviews:687, emoji:"👟", category:"footwear", delivery:"Free Delivery" },
+  ];
+
+  const products2 = [
+    { id:13, name:"Cotton Blend Palazzo Set", price:249, mrp:599, off:58, rating:4.2, reviews:521, emoji:"🩱", category:"kurti", delivery:"Free Delivery" },
+    { id:14, name:"Men's Casual Sneakers", price:299, mrp:799, off:62, rating:3.8, reviews:340, emoji:"👞", category:"footwear", delivery:"Free Delivery" },
+    { id:15, name:"Elegant Dupatta Scarf", price:149, mrp:349, off:57, rating:4.1, reviews:212, emoji:"🧣", category:"saree", delivery:"Free Delivery" },
+    { id:16, name:"Trendy Backpack Unisex", price:279, mrp:699, off:60, rating:4.3, reviews:890, emoji:"🎒", category:"bag", delivery:"Free Delivery" },
+    { id:17, name:"Lipstick Matte Finish Set", price:199, mrp:499, off:60, rating:4.4, reviews:1320, emoji:"💄", category:"beauty", delivery:"Free Delivery" },
+    { id:18, name:"Yoga & Gym Leggings", price:249, mrp:599, off:58, rating:4.0, reviews:410, emoji:"🩳", category:"sport", delivery:"Free Delivery" },
+    { id:19, name:"Kids Cartoon Printed T-Shirt", price:149, mrp:349, off:57, rating:4.3, reviews:275, emoji:"🧒", category:"kids", delivery:"Free Delivery" },
+    { id:20, name:"Ceramic Flower Vase Set", price:199, mrp:449, off:55, rating:4.1, reviews:189, emoji:"🏺", category:"home", delivery:"Free Delivery" },
+  ];
+
+  let cartCount = 0;
+  let wishlist = new Set();
+
+  function renderProducts(list, containerId) {
+    const grid = document.getElementById(containerId);
+    grid.innerHTML = list.map(p => `
+      <div class="product-card" id="card-${p.id}">
+        <div class="product-img-placeholder" style="background:${randomBg()};">${p.emoji}</div>
+        <span class="discount-badge">${p.off}% off</span>
+        <button class="wishlist-btn ${wishlist.has(p.id) ? 'active' : ''}" onclick="toggleWishlist(${p.id}, this)" title="Add to Wishlist">
+          <i class="${wishlist.has(p.id) ? 'fas' : 'far'} fa-heart"></i>
+        </button>
+        <div class="product-info">
+          <div class="product-name">${p.name}</div>
+          <div class="product-price-row">
+            <span class="price-current">₹${p.price}</span>
+            <span class="price-original">₹${p.mrp}</span>
+            <span class="price-off">${p.off}% off</span>
+          </div>
+          <div class="stars">
+            ${starHTML(p.rating)} <span>${p.rating} (${p.reviews.toLocaleString()})</span>
+          </div>
+          <div class="free-delivery">🚚 ${p.delivery}</div>
+          <button class="add-cart-btn" onclick="addToCart('${p.name}', ${p.id})">Add to Cart</button>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  function randomBg() {
+    const bgs = ['#fce4ec','#f3e5f5','#e8f5e9','#fff3e0','#e3f2fd','#fff8e1','#e0f7fa','#f9fbe7'];
+    return bgs[Math.floor(Math.random() * bgs.length)];
+  }
+
+  function starHTML(rating) {
+    let stars = '';
+    for (let i = 1; i <= 5; i++) {
+      if (i <= Math.floor(rating)) stars += '<i class="fas fa-star"></i>';
+      else if (i - rating < 1) stars += '<i class="fas fa-star-half-alt"></i>';
+      else stars += '<i class="far fa-star"></i>';
+    }
+    return stars;
+  }
+
+  function addToCart(name, id) {
+    cartCount++;
+    document.getElementById('cartCount').textContent = cartCount;
+    showToast(`🛒 "${name.substring(0,28)}..." added!`);
+  }
+
+  function toggleWishlist(id, btn) {
+    if (wishlist.has(id)) {
+      wishlist.delete(id);
+      btn.classList.remove('active');
+      btn.innerHTML = '<i class="far fa-heart"></i>';
+      showToast('💔 Removed from wishlist');
+    } else {
+      wishlist.add(id);
+      btn.classList.add('active');
+      btn.innerHTML = '<i class="fas fa-heart"></i>';
+      showToast('❤️ Added to wishlist!');
+    }
+  }
+
+  function showCart(e) {
+    e.preventDefault();
+    showToast(`🛒 You have ${cartCount} item(s) in cart`);
+  }
+
+  function filterCategory(cat) {
+    const all = [...products, ...products2];
+    const filtered = all.filter(p => p.category === cat);
+    if (filtered.length > 0) {
+      document.getElementById('productGrid').scrollIntoView({ behavior: 'smooth' });
+      renderProducts(filtered.slice(0, 8), 'productGrid');
+      showToast(`🔍 Showing ${filtered.length} result(s)`);
+    } else {
+      showToast('No products in this category yet!');
+    }
+  }
+
+  function handleSearch() {
+    const q = document.getElementById('searchInput').value.trim().toLowerCase();
+    if (!q) return;
+    const all = [...products, ...products2];
+    const filtered = all.filter(p => p.name.toLowerCase().includes(q) || p.category.includes(q));
+    renderProducts(filtered.length ? filtered : all, 'productGrid');
+    showToast(filtered.length ? `🔍 Found ${filtered.length} result(s) for "${q}"` : `No results found for "${q}"`);
+  }
+
+  document.getElementById('searchInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') handleSearch();
+  });
+
+  let toastTimer;
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => t.classList.remove('show'), 2500);
+  }
+
+  // Nav active state
+  document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+      this.classList.add('active');
+    });
+  });
+
+  // Init
+  renderProducts(products, 'productGrid');
+  renderProducts(products2, 'productGrid2');
+</script>
+</body>
+</html>
